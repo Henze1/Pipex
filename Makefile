@@ -6,8 +6,8 @@ NAME = pipex
 LIBFT = libft
 LIBFT_NAME = libft.a
 
-#PRINTF = ft_printf
-#PRINTF_NAME = ft_printf.a
+PRINTF = ft_printf
+PRINTF_NAME = libftprintf.a
 
 OBJ_DIR = build/objects
 OUTPUT_DIR = build/outputs
@@ -20,11 +20,13 @@ OBJ = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRC))
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	make -C $(LIBFT)
+	make -C $(PRINTF)
 	mkdir -p $(OUTPUT_DIR)
 	cp $(LIBFT)/$(LIBFT_NAME) $(OUTPUT_DIR)/
+	cp $(PRINTF)/$(PRINTF_NAME) $(OUTPUT_DIR)/
 	make fclean	-C $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJ) $(OUTPUT_DIR)/$(LIBFT_NAME) -o $(OUTPUT_DIR)/$(NAME)
+	make fclean	-C $(PRINTF)
+	$(CC) $(CFLAGS) $(OBJ) $(OUTPUT_DIR)/$(LIBFT_NAME) $(OUTPUT_DIR)/$(PRINTF_NAME) -o $(OUTPUT_DIR)/$(NAME)
 
 $(OBJ_DIR)/%.o: %.c headers/pipex.h Makefile
 	mkdir -p $(dir $@)
@@ -37,6 +39,7 @@ clean:
 fclean: clean
 	rm -f $(OUTPUT_DIR)/$(NAME)
 	rm -f $(OUTPUT_DIR)/$(LIBFT_NAME)
+	rm -f $(OUTPUT_DIR)/$(PRINTF_NAME)
 
 re: fclean all
 

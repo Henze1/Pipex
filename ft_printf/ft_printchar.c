@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hpodratc <hpodratc@student.42yerevan.am>   +#+  +:+       +#+        */
+/*   By: hpodratc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/26 10:43:09 by hpodratc          #+#    #+#             */
-/*   Updated: 2025/06/26 20:30:14 by hpodratc         ###   ########.fr       */
+/*   Created: 2025/01/20 09:47:52 by hpodratc          #+#    #+#             */
+/*   Updated: 2025/01/20 09:48:13 by hpodratc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
-# include "../libft/libft.h"
+#include "ft_printf.h"
 
-int    main(void);
-void    pipex();
-
-#endif
+int	ft_printchar(unsigned char c)
+{
+	write(1, &c, 1);
+	return (1);
+}
