@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 
 NAME = pipex
 
@@ -14,6 +14,7 @@ OUTPUT_DIR = build/outputs
 
 SRC = main.c \
 		service/pipex.c \
+		service/pipex_utils.c \
 
 OBJ = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRC))
 
