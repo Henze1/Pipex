@@ -6,7 +6,7 @@
 /*   By: hpodratc <hpodratc@student.42yerevan.am>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:28:58 by hpodratc          #+#    #+#             */
-/*   Updated: 2025/06/29 11:59:34 by hpodratc         ###   ########.fr       */
+/*   Updated: 2025/06/30 14:31:18 by hpodratc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main(int argc, char **argv, char **envp)
 	}
 	else
 		pipex(++argv, envp);
-	wait(NULL);
+	while (wait(NULL) != -1)
+		;
 	return (0);
 }

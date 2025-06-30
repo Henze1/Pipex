@@ -6,7 +6,7 @@
 /*   By: hpodratc <hpodratc@student.42yerevan.am>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 11:37:43 by hpodratc          #+#    #+#             */
-/*   Updated: 2025/06/29 11:59:32 by hpodratc         ###   ########.fr       */
+/*   Updated: 2025/06/30 14:32:49 by hpodratc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	exec_bash(char *arg, char **envp)
 		while (command[i])
 			free(command[i++]);
 		free(command);
+		free(path);
 		print_error();
 	}
 	if (execve(path, command, envp) == -1)
@@ -54,16 +55,15 @@ char	*get_path(char *command, char **envp)
 		path = ft_strjoin(path, command);
 		if (!access(path, F_OK))
 			return (path);
+		free(path);
 	}
 	i = 0;
-	while (root_path[i])
-		free(root_path[i++]);
 	free(root_path);
 	return (NULL);
 }
 
 void	print_error(void)
 {
-	perror("Error:");
+	perror("Error");
 	exit(1);
 }

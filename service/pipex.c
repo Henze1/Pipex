@@ -62,6 +62,8 @@ void	process_output(int *fd, char **argv, char **envp)
 		print_error();
 	dup2(fd[0], 0);
 	dup2(file, 1);
+	close(file);
 	close(fd[1]);
+	close(fd[0]);
 	exec_bash(argv[2], envp);
 }
