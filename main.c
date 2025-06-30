@@ -21,5 +21,6 @@ int	main(int argc, char **argv, char **envp)
 	}
 	else
 		pipex(++argv, envp);
+	wait(NULL);
 	return (0);
 }

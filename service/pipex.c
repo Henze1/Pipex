@@ -15,19 +15,28 @@
 void	pipex(char **argv, char **envp)
 {
 	int		fd[2];
-	pid_t	pid;
+	pid_t	child_pid1;
+	pid_t	child_pid2;
 
 	if (pipe(fd) == -1)
 		print_error();
-	pid = fork();
-	if (pid == -1)
+	child_pid1 = fork();
+	if (child_pid1 == -1)
 		print_error();
-	else if (pid == 0)
+	else if (child_pid1 == 0)
 		process_input(fd, argv, envp);
 	else
 	{
-		wait(NULL);
-		process_output(fd, argv, envp);
+		child_pid2 = fork();
+		if (child_pid2 == -1)
+			print_error();
+		else if (child_pid2 == 0)
+			process_output(fd, argv, envp);
+		else
+		{
+			close(fd[0]);
+			close(fd[1]);
+		}
 	}
 }
 
