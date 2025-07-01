@@ -50,6 +50,8 @@ void	process_input(int *fd, char **argv, char **envp)
 	dup2(fd[1], 1);
 	dup2(file, 0);
 	close(fd[0]);
+	close(fd[1]);
+	close(file);
 	exec_bash(argv[1], envp);
 }
 
@@ -66,4 +68,30 @@ void	process_output(int *fd, char **argv, char **envp)
 	close(fd[1]);
 	close(fd[0]);
 	exec_bash(argv[2], envp);
+}
+
+int	is_only_space(char const *str)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i])
+	{
+		if (str[i] != ' ')
+			return (0);
+	}
+	return (1);
+}
+
+int	contains(char const *str, char c)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i])
+	{
+		if (str[i] == c)
+			return (1);
+	}
+	return (0);
 }

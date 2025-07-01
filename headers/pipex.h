@@ -22,9 +22,13 @@
 int		main(int argc, char **argv, char **envp);
 void	pipex(char **argv, char **envp);
 void	print_error(void);
+void	print_not_found(char *command);
 void	process_input(int *fd, char **argv, char **envp);
 void	process_output(int *fd, char **argv, char **envp);
 void	exec_bash(char *arg, char **envp);
 char	*get_path(char *command, char **envp);
+int		is_only_space(char const *str);
+int		contains(char const *str, char c);
+void	spare_mem(char ***strs);
 
 #endif

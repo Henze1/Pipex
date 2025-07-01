@@ -16,7 +16,13 @@ int	main(int argc, char **argv, char **envp)
 {
 	if (argc != 5)
 	{
-		ft_printf("Error: Invalid arguments\n");
+		ft_putendl_fd("Error: Invalid arguments\n", 2);
+		ft_printf("Ex: ./pipex <file1> <cmd1> <cmd2> <file2>\n");
+	}
+	else if (!*argv[2] || is_only_space(argv[2])
+		|| !*argv[3] || is_only_space(argv[3]))
+	{
+		ft_putendl_fd("Error: Invalid arguments\n", 2);
 		ft_printf("Ex: ./pipex <file1> <cmd1> <cmd2> <file2>\n");
 	}
 	else
